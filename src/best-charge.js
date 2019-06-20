@@ -1,3 +1,6 @@
+var loadAllItems = require('../src/items');
+var loadPromotions =require('../src/promotions');
+
 function bestCharge(selectedItems) {
   //获得客户挑选的商品信息
   var allItems;
@@ -122,3 +125,5 @@ function getReducePrice(count2, allItems, getItems) {
   }
   return sum - count2;
 }
+
+module.exports = bestCharge;
