@@ -98,7 +98,9 @@
 2. 可使用`loadPromotions()`方法获取全部的优惠方式
 
 ## 运行测试
+npm test
 
 ### 浏览器
 
 可使用浏览器打开`run-specs.html`文件运行测试
+

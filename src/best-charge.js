@@ -1,25 +1,25 @@
-var loadAllItems = require('../src/items');
-var loadPromotions =require('../src/promotions');
+let loadAllItems = require('../src/items');
+let loadPromotions =require('../src/promotions');
 
 function bestCharge(selectedItems) {
   //获得客户挑选的商品信息
-  var allItems;
+  let allItems;
   allItems = [];
   allItems = splitIt(selectedItems);
 
   //获取商品的基本信息
-  var getItems = loadAllItems();
-  var getItem = loadAllItems();
+  let getItems = loadAllItems();
+  let getItem = loadAllItems();
   //获取优惠商品
-  var getCount = loadPromotions();
+  let getCount = loadPromotions();
 
   //按照第一种方式优惠或者不优惠
-  var count1 = countItByFirst(allItems, getItems);
+  let count1 = countItByFirst(allItems, getItems);
 
   //按照第二种方式优惠
-  var count2 = countItBySecond(allItems, getItems, getCount);
+  let count2 = countItBySecond(allItems, getItems, getCount);
 
-  var str;
+  let str;
   str = compareIt(count1, count2, allItems, getItem);
   return str;
 }
@@ -33,7 +33,7 @@ function bestCharge(selectedItems) {
 // }
 // numbers is now [2, 4, 6, 8, 10]
 function splitIt(selectedItems) {
-  var temp = [];
+  let temp = [];
   for (var i = 0; i < selectedItems.length; i++) {
 
     temp[i] = selectedItems[i].split("x");
@@ -45,9 +45,9 @@ function splitIt(selectedItems) {
 
 //第一种优惠方式
 function countItByFirst(allItems, getItems) {
-  var sum = 0;
-  for (var i = 0; i < allItems.length; i++) {
-    for (var j = 0; j < getItems.length; j++) {
+  let sum = 0;
+  for (let i = 0; i < allItems.length; i++) {
+    for (let j = 0; j < getItems.length; j++) {
       if (allItems[i][0] === getItems[j].id) {
         sum += allItems[i][1] * getItems[j].price;
       }
@@ -62,17 +62,17 @@ function countItByFirst(allItems, getItems) {
 
 //第二种优惠方式
 function countItBySecond(allItems, getItems, getCount) {
-  var sum = 0;
+  let sum = 0;
 
-  for (var k = 0; k < getItems.length; k++) {
-    for (var m = 0; m < getCount[1].items.length; m++) {
+  for (let k = 0; k < getItems.length; k++) {
+    for (let m = 0; m < getCount[1].items.length; m++) {
       if (getItems[k].id === getCount[1].items[m]) {
         getItems[k].price *= 1 / 2;
       }
     }
   }
-  for (var i = 0; i < allItems.length; i++) {
-    for (var j = 0; j < getItems.length; j++) {
+  for (let i = 0; i < allItems.length; i++) {
+    for (let j = 0; j < getItems.length; j++) {
       if (allItems[i][0] === getItems[j].id) {
         sum += allItems[i][1] * getItems[j].price;
       }
@@ -84,11 +84,11 @@ function countItBySecond(allItems, getItems, getCount) {
 
 function compareIt(count1, count2, allItems, getItems) {
 
-  var output = "============= 订餐明细 =============";
+  let output = "============= 订餐明细 =============";
 
   //将整个购买数据输出
-  for (var i = 0; i < allItems.length; i++)
-    for (var j = 0; j < getItems.length; j++) {
+  for (let i = 0; i < allItems.length; i++)
+    for (let j = 0; j < getItems.length; j++) {
       if (allItems[i][0] === getItems[j].id) {
         output += "\n" + getItems[j].name + " x" + allItems[i][1] + " = " + allItems[i][1] * getItems[j].price + "元";
       }
@@ -116,9 +116,9 @@ function compareIt(count1, count2, allItems, getItems) {
 
 //计算差价
 function getReducePrice(count2, allItems, getItems) {
-  var sum = 0;
-  for (var i = 0; i < allItems.length; i++) {
-    for (var j = 0; j < getItems.length; j++) {
+  let sum = 0;
+  for (let i = 0; i < allItems.length; i++) {
+    for (let j = 0; j < getItems.length; j++) {
       if (allItems[i][0] === getItems[j].id) {
         sum += allItems[i][1] * getItems[j].price;
       }
