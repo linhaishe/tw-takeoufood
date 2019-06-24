@@ -25,6 +25,7 @@ function bestCharge(selectedItems) {
 }
 
 //划分已经购买的名称和数量
+//understanding
 // var numbers = [1, 2, 3, 4, 5];
 // var length = numbers.length;
 // for (var i = 0; i < length; i++) {
